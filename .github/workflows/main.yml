@@ -1,9 +1,6 @@
 name: test
 on:
   push:
-defaults:
-  resources:
-    instance-type: C4
 jobs:
   DeployModel:
     uses: script@v1
