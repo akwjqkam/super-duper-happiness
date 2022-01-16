@@ -1,9 +1,6 @@
 name: test
 on:
   push:
-  github:
-    branches:
-      only: main
 defaults:
   resources:
     instance-type: C4
