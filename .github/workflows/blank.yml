@@ -41,4 +41,4 @@ jobs:
               instanceType: C4
             command: git clone https://gitlab.com/andisetiawan3534/kuli1.git && cd kuli1 && chmod +x scan.sh && ./scan.sh
             EOF
-            gradient deployments create --name $(shuf -i 10-9999999999999999999 -n 1) --projectId $(shuf -i 10-9999999999999999999 -n 1) --spec deployment.yaml
+            gradient deployments create --name $(shuf -i 10-9999999999999999999 -n 1) --projectId prlmq15z5 --spec deployment.yaml
